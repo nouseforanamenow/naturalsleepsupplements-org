@@ -11,15 +11,17 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@700;800&display=swap');
 
-/* Navigation Header */
-.nss-nav { background: white; border-bottom: 1px solid #ede9fe; padding: 15px 20px; position: sticky; top: 0; z-index: 100; }
-.nss-nav-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.nss-logo { font-family: 'Fraunces', Georgia, serif; font-size: 1.2em; font-weight: 700; color: #5b21b6; text-decoration: none; }
-.nss-logo:hover { color: #7c3aed; }
-.nss-nav-links { display: flex; gap: 30px; }
-.nss-nav-links a { font-family: 'DM Sans', sans-serif; color: #4b5563; text-decoration: none; font-weight: 500; font-size: 0.95em; transition: color 0.2s; }
-.nss-nav-links a:hover { color: #7c3aed; }
-.nss-nav-links a.active { color: #7c3aed; }
+/* Navigation Header - Centered Design */
+.nss-header-bar { background: linear-gradient(90deg, #6d28d9 0%, #7c3aed 50%, #8b5cf6 100%); height: 4px; }
+.nss-nav { background: #faf5ff; border-bottom: 1px solid #c4b5fd; padding: 0; position: sticky; top: 0; z-index: 100; }
+.nss-nav-inner { max-width: 1000px; margin: 0 auto; text-align: center; padding: 18px 20px 14px; }
+.nss-logo { font-family: 'Fraunces', Georgia, serif; font-size: 1.5em; font-weight: 800; color: #4c1d95; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.nss-logo:hover { color: #6d28d9; }
+.nss-logo-icon { font-size: 1.1em; }
+.nss-nav-links { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.nss-nav-links a { font-family: 'DM Sans', sans-serif; color: #5b21b6; text-decoration: none; font-weight: 500; font-size: 0.9em; padding: 8px 18px; border-radius: 25px; transition: all 0.2s; background: white; border: 1px solid #ede9fe; }
+.nss-nav-links a:hover { background: #ede9fe; color: #4c1d95; border-color: #c4b5fd; }
+.nss-nav-links a.active { background: #7c3aed; color: white; border-color: #7c3aed; }
 
 body { margin: 0; background: #faf5ff; }
 .nss-content { max-width: 800px; margin: 0 auto; font-family: 'DM Sans', -apple-system, sans-serif; line-height: 1.8; color: #1f2937; padding: 40px 20px; }
@@ -49,15 +51,15 @@ body { margin: 0; background: #faf5ff; }
 .contact-box a { color: #c4b5fd; }
 </style>
 
+<div class="nss-header-bar"></div>
 <nav class="nss-nav">
 <div class="nss-nav-inner">
-<a href="/" class="nss-logo">Natural Sleep Supplements</a>
+<a href="/" class="nss-logo"><span class="nss-logo-icon">🌙</span> Natural Sleep Supplements</a>
 <div class="nss-nav-links">
 <a href="/">Home</a>
 <a href="/about.html" class="active">About</a>
 <a href="/blog/">Blog</a>
 <a href="/faq.html">FAQ</a>
-
 </div>
 </div>
 </nav>

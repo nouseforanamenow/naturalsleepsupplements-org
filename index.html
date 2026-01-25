@@ -12,15 +12,17 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@700;800&display=swap');
 
-/* Navigation Header */
-.nss-nav { background: white; border-bottom: 1px solid #ede9fe; padding: 15px 20px; position: sticky; top: 0; z-index: 100; }
-.nss-nav-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.nss-logo { font-family: 'Fraunces', Georgia, serif; font-size: 1.2em; font-weight: 700; color: #5b21b6; text-decoration: none; }
-.nss-logo:hover { color: #7c3aed; }
-.nss-nav-links { display: flex; gap: 30px; }
-.nss-nav-links a { font-family: 'DM Sans', sans-serif; color: #4b5563; text-decoration: none; font-weight: 500; font-size: 0.95em; transition: color 0.2s; }
-.nss-nav-links a:hover { color: #7c3aed; }
-.nss-nav-links a.active { color: #7c3aed; }
+/* Navigation Header - Centered Design */
+.nss-header-bar { background: linear-gradient(90deg, #6d28d9 0%, #7c3aed 50%, #8b5cf6 100%); height: 4px; }
+.nss-nav { background: #faf5ff; border-bottom: 1px solid #c4b5fd; padding: 0; position: sticky; top: 0; z-index: 100; }
+.nss-nav-inner { max-width: 1000px; margin: 0 auto; text-align: center; padding: 18px 20px 14px; }
+.nss-logo { font-family: 'Fraunces', Georgia, serif; font-size: 1.5em; font-weight: 800; color: #4c1d95; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.nss-logo:hover { color: #6d28d9; }
+.nss-logo-icon { font-size: 1.1em; }
+.nss-nav-links { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.nss-nav-links a { font-family: 'DM Sans', sans-serif; color: #5b21b6; text-decoration: none; font-weight: 500; font-size: 0.9em; padding: 8px 18px; border-radius: 25px; transition: all 0.2s; background: white; border: 1px solid #ede9fe; }
+.nss-nav-links a:hover { background: #ede9fe; color: #4c1d95; border-color: #c4b5fd; }
+.nss-nav-links a.active { background: #7c3aed; color: white; border-color: #7c3aed; }
 
 .nss-content { max-width: 1000px; margin: 0 auto; font-family: 'DM Sans', -apple-system, sans-serif; line-height: 1.7; color: #1f2937; padding: 0 20px; }
 .nss-content h1 { font-family: 'Fraunces', Georgia, serif; font-size: 2.5em; margin-bottom: 20px; color: #4c1d95; font-weight: 800; }
@@ -53,14 +55,7 @@
 .criteria h3 { font-family: 'Fraunces', Georgia, serif; margin-top: 0; color: #5b21b6; font-size: 1.1em; }
 .criteria ul { margin: 12px 0 0 20px; }
 .criteria li { margin-bottom: 8px; color: #4b5563; }
-.callout-box { background: #f9fafb; padding: 25px 30px; border-radius: 10px; margin: 30px 0; border: 1px solid #e5e7eb; }
-.callout-box h3 { color: #111; margin: 0 0 18px 0; font-size: 1.05em; font-weight: 700; }
-.callout-box p { color: #374151; font-size: 0.95em; line-height: 1.7; margin: 0 0 12px 0; }
-.callout-box p:last-child { margin: 0; }
-.callout-box .cite { font-size: 0.85em; color: #6b7280; font-style: italic; margin-top: 15px; }
-.stat-bubbles { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
-.stat-bubble { background: white; border: 1px solid #d1d5db; border-radius: 50px; padding: 8px 16px; font-size: 0.9em; color: #111; }
-.stat-bubble strong { font-weight: 700; }
+.personal-intro { font-size: 1.1em; color: #4b5563; line-height: 1.8; margin-bottom: 30px; }
 .nss-citation { font-size: 0.85em; color: #9ca3af; margin-top: 40px; }
 .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #c4b5fd, transparent); margin: 50px 0; }
 .category-card { background: white; border: 1px solid #ede9fe; border-radius: 16px; padding: 25px; margin: 20px 0; }
@@ -80,34 +75,26 @@
 .product-card a { color: #7c3aed; font-weight: 600; font-size: 0.95em; }
 </style>
 
+<div class="nss-header-bar"></div>
 <nav class="nss-nav">
 <div class="nss-nav-inner">
-<a href="/" class="nss-logo">Natural Sleep Supplements</a>
+<a href="/" class="nss-logo"><span class="nss-logo-icon">🌙</span> Natural Sleep Supplements</a>
 <div class="nss-nav-links">
 <a href="/" class="active">Home</a>
 <a href="/about.html">About</a>
 <a href="/blog/">Blog</a>
 <a href="/faq.html">FAQ</a>
-
 </div>
 </div>
 </nav>
 
 <div class="nss-content">
 
-<h1>Best Natural Sleep Supplements Ranked (2025)</h1>
+<h1>Best Natural Sleep Supplements Ranked (2026)</h1>
 
 <p class="nss-intro">We compared 18 natural sleep supplements—mushrooms, herbs, amino acids, and minerals—to find what actually works without the downsides of melatonin or prescription sleep aids.</p>
 
-<div class="callout-box">
-<h3>The Problem With Most Sleep Supplements</h3>
-<div class="stat-bubbles">
-<span class="stat-bubble"><strong>71%</strong> of melatonin mislabeled</span>
-<span class="stat-bubble"><strong>2-4 weeks</strong> to build tolerance</span>
-<span class="stat-bubble"><strong>40%</strong> report grogginess</span>
-</div>
-<p>Melatonin is a hormone that suppresses natural production. Valerian binds GABA receptors like prescription drugs. Many gummies have more sugar than active ingredients. We ranked supplements that avoid these problems.</p>
-</div>
+<p class="personal-intro">The sleep supplement market is saturated with thousands of products making big claims. We're here to help you cut through the noise—no gimmicks, just research-backed rankings based on what actually works for long-term, natural sleep support.</p>
 
 <div class="criteria">
 <h3>How We Ranked</h3>
@@ -146,7 +133,7 @@
 <td><span class="rank rank-1">#1</span></td>
 <td><a href="https://aharamushrooms.com/products/ahara-organic-reishi-elixir-alcohol-free" target="_blank"><strong>Ahara Reishi Elixir</strong></a></td>
 <td>Mushroom</td>
-<td>30-60 min</td>
+<td>15 min</td>
 <td><span class="tag-yes">Yes (MD)</span></td>
 <td><span class="tag-yes">Yes</span></td>
 <td><span class="tag-yes">Yes</span></td>
