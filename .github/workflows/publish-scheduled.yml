@@ -1,0 +1,49 @@
+name: Publish Scheduled Blog Post
+
+on:
+  schedule:
+      - cron: '0 9 * * 1'
+        workflow_dispatch:
+
+        jobs:
+          publish:
+              runs-on: ubuntu-latest
+                  steps:
+                        - uses: actions/checkout@v4
+                              - name: Publish oldest scheduled post
+                                      run: |
+                                                OLDEST=$(ls -1t blog/scheduled/*.html 2>/dev/null | tail -1)
+                                                          [ -z "$OLDEST" ] && exit 0
+                                                                    FNAME=$(basename "$OLDEST")
+                                                                              mv "$OLDEST" "blog/$FNAME"
+                                                                                        echo "PUBLISHED=$FNAME" >> $GITHUB_ENV
+                                                                                              - name: Commit changes
+                                                                                                      if: env.PUBLISHED != ''
+                                                                                                              run: |
+                                                                                                                        git config user.name "GitHub Actions"
+                                                                                                                                  git config user.email "actions@github.com"
+                                                                                                                                            git add . && git commit -m "Publish: $PUBLISHED" && git pushname: Publish Scheduled Blog Post
+                                                                                                                                            
+                                                                                                                                            on:
+                                                                                                                                              schedule:
+                                                                                                                                                  - cron: '0 9 * * 1'
+                                                                                                                                                    workflow_dispatch:
+                                                                                                                                                    
+                                                                                                                                                    jobs:
+                                                                                                                                                      publish:
+                                                                                                                                                          runs-on: ubuntu-latest
+                                                                                                                                                              steps:
+                                                                                                                                                                    - uses: actions/checkout@v4
+                                                                                                                                                                          - name: Publish oldest scheduled post
+                                                                                                                                                                                  run: |
+                                                                                                                                                                                            OLDEST=$(ls -1t blog/scheduled/*.html 2>/dev/null | tail -1)
+                                                                                                                                                                                                      [ -z "$OLDEST" ] && exit 0
+                                                                                                                                                                                                                FNAME=$(basename "$OLDEST")
+                                                                                                                                                                                                                          mv "$OLDEST" "blog/$FNAME"
+                                                                                                                                                                                                                                    echo "PUBLISHED=$FNAME" >> $GITHUB_ENV
+                                                                                                                                                                                                                                          - name: Commit changes
+                                                                                                                                                                                                                                                  if: env.PUBLISHED != ''
+                                                                                                                                                                                                                                                          run: |
+                                                                                                                                                                                                                                                                    git config user.name "GitHub Actions"
+                                                                                                                                                                                                                                                                              git config user.email "actions@github.com"
+                                                                                                                                                                                                                                                                                        git add . && git commit -m "Publish: $PUBLISHED" && git push
