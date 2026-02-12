@@ -1,49 +1,80 @@
-name: Publish Scheduled Blog Post
+name: Publish Scheduled Posts
 
 on:
   schedule:
-      - cron: '0 9 * * 1'
-        workflow_dispatch:
+    - cron: '0 14 * * 2,5'  # Tuesdays and Fridays at 9am EST (14:00 UTC)
+  workflow_dispatch:
 
-        jobs:
-          publish:
-              runs-on: ubuntu-latest
-                  steps:
-                        - uses: actions/checkout@v4
-                              - name: Publish oldest scheduled post
-                                      run: |
-                                                OLDEST=$(ls -1t blog/scheduled/*.html 2>/dev/null | tail -1)
-                                                          [ -z "$OLDEST" ] && exit 0
-                                                                    FNAME=$(basename "$OLDEST")
-                                                                              mv "$OLDEST" "blog/$FNAME"
-                                                                                        echo "PUBLISHED=$FNAME" >> $GITHUB_ENV
-                                                                                              - name: Commit changes
-                                                                                                      if: env.PUBLISHED != ''
-                                                                                                              run: |
-                                                                                                                        git config user.name "GitHub Actions"
-                                                                                                                                  git config user.email "actions@github.com"
-                                                                                                                                            git add . && git commit -m "Publish: $PUBLISHED" && git pushname: Publish Scheduled Blog Post
-                                                                                                                                            
-                                                                                                                                            on:
-                                                                                                                                              schedule:
-                                                                                                                                                  - cron: '0 9 * * 1'
-                                                                                                                                                    workflow_dispatch:
-                                                                                                                                                    
-                                                                                                                                                    jobs:
-                                                                                                                                                      publish:
-                                                                                                                                                          runs-on: ubuntu-latest
-                                                                                                                                                              steps:
-                                                                                                                                                                    - uses: actions/checkout@v4
-                                                                                                                                                                          - name: Publish oldest scheduled post
-                                                                                                                                                                                  run: |
-                                                                                                                                                                                            OLDEST=$(ls -1t blog/scheduled/*.html 2>/dev/null | tail -1)
-                                                                                                                                                                                                      [ -z "$OLDEST" ] && exit 0
-                                                                                                                                                                                                                FNAME=$(basename "$OLDEST")
-                                                                                                                                                                                                                          mv "$OLDEST" "blog/$FNAME"
-                                                                                                                                                                                                                                    echo "PUBLISHED=$FNAME" >> $GITHUB_ENV
-                                                                                                                                                                                                                                          - name: Commit changes
-                                                                                                                                                                                                                                                  if: env.PUBLISHED != ''
-                                                                                                                                                                                                                                                          run: |
-                                                                                                                                                                                                                                                                    git config user.name "GitHub Actions"
-                                                                                                                                                                                                                                                                              git config user.email "actions@github.com"
-                                                                                                                                                                                                                                                                                        git add . && git commit -m "Publish: $PUBLISHED" && git push
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find and move oldest scheduled post
+        run: |
+          OLDEST_FILE=$(ls -t blog/scheduled/*.html 2>/dev/null | tail -1)
+          if [ -z "$OLDEST_FILE" ]; then
+            echo "No scheduled posts found"
+            exit 0
+          fi
+          FILENAME=$(basename "$OLDEST_FILE")
+          mv "$OLDEST_FILE" "blog/$FILENAME"
+          echo "MOVED_FILE=blog/$FILENAME" >> $GITHUB_ENV
+          echo "FILE_BASENAME=$FILENAME" >> $GITHUB_ENV
+
+      - name: Update blog index
+        run: |
+          if [ -z "$MOVED_FILE" ]; then
+            echo "No file was moved"
+            exit 0
+          fi
+          FILE_BASENAME="$FILE_BASENAME"
+          URL_PATH="blog/${FILE_BASENAME%.html}"
+          TITLE="${FILE_BASENAME%.html}"
+          
+          # Add entry to blog/index.html if it exists
+          if [ -f "blog/index.html" ]; then
+            # Insert link before closing body tag
+            sed -i "/<\/body>/i\\    <li><a href=\"/$URL_PATH.html\">$TITLE</a></li>" blog/index.html
+          fi
+
+      - name: Update sitemap.xml
+        run: |
+          if [ -z "$MOVED_FILE" ]; then
+            echo "No file was moved"
+            exit 0
+          fi
+          FILE_BASENAME="$FILE_BASENAME"
+          URL="https://naturalsleepsupplements.org/blog/${FILE_BASENAME%.html}.html"
+          
+          # Add URL entry to sitemap.xml if it exists
+          if [ -f "sitemap.xml" ]; then
+            # Insert entry before closing urlset tag
+            sed -i "/<\/urlset>/i\\  <url>\n    <loc>$URL</loc>\n  </url>" sitemap.xml
+          fi
+
+      - name: Commit and push changes
+        run: |
+          if [ -z "$MOVED_FILE" ]; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          FILE_BASENAME="$FILE_BASENAME"
+          
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add blog/ sitemap.xml 2>/dev/null || true
+          
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish scheduled post: $FILE_BASENAME
+
+Site: Natural Sleep Supplements
+Post: $FILE_BASENAME
+Published from scheduled queue"
+            git push
+          else
+            echo "No changes to commit"
+          fi
