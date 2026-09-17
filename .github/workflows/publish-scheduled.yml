@@ -72,11 +72,7 @@ jobs:
           git add blog/ sitemap.xml 2>/dev/null || true
           
           if ! git diff --cached --quiet; then
-            git commit -m "Publish scheduled post: $FILE_BASENAME
-
-Site: Natural Sleep Supplements
-Post: $FILE_BASENAME
-Published from scheduled queue"
+            git commit -m "Publish scheduled post: $FILE_BASENAME"
             git push
           else
             echo "No changes to commit"
