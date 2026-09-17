@@ -5,6 +5,9 @@ on:
     - cron: '0 14 * * 2,5'  # Tuesdays and Fridays at 9am EST (14:00 UTC)
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
