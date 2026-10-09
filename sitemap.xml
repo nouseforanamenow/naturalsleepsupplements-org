@@ -44,7 +44,7 @@
   </url>
   <url>
     <loc>https://www.naturalsleepsupplements.org/blog/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -285,6 +285,12 @@
   <url>
     <loc>https://www.naturalsleepsupplements.org/blog/blog-sleep-supplement-side-effects.html</loc>
     <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.naturalsleepsupplements.org/blog/blog-sleep-supplements-for-anxiety.html</loc>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
