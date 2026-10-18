@@ -1,6 +1,6 @@
 # Natural Sleep Supplements
 
-> Independent research site examining evidence-based natural sleep supplements, supplement stacking protocols, and sleep pathway science. Published by Ahara Mushrooms.
+> Independent research site examining evidence-based natural sleep supplements, supplement stacking protocols, and sleep pathway science.
 
 ## Site Overview
 
@@ -38,9 +38,8 @@ All supplement recommendations grounded in: randomized controlled trials from Pu
 
 ## Disclosure
 
-This site is owned by Ahara Mushrooms, which manufactures Reishi and Lion's Mane liquid elixirs. Research integrity maintained by citing studies regardless of manufacturer, recommending complementary supplements beyond own product line, and prioritizing user sleep outcomes over sales.
+Research integrity maintained by citing studies regardless of manufacturer, recommending complementary supplements beyond own product line, and prioritizing user sleep outcomes over sales.
 
 ## Contact
 
 - Website: https://www.naturalsleepsupplements.org
-- Publisher: Ahara Mushrooms (https://aharamushrooms.com)
