@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://www.naturalsleepsupplements.org/sitemap.xml
+Allow: / Sitemap: https://www.naturalsleepsupplements.org/sitemap.xml
