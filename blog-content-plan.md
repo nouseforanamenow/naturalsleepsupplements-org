@@ -117,7 +117,7 @@
 
 ### Month 5: Trust & Authority
 
-**Week 17: "How We Test and Rank Natural Sleep Supplements"**
+**Week 17: "How Supplements Are Ranked Here"**
 - Hook: Behind-the-scenes methodology
 - Key points: Scoring system, weighted factors, why USA sourcing matters
 - CTA: See full methodology
